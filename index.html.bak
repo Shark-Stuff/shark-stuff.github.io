@@ -1,0 +1,264 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>Meteors</title>
+        <meta charset="utf-8">
+        <style type="text/css">
+            html {
+                height: 100%;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                background: #000000 url(loading.gif) center center no-repeat;
+                color: #ffffff;
+                font-family: sans-serif;
+                font-size: 13px;
+                line-height: 20px;
+                height: 100%;
+            }
+
+            #info {
+                font-size: 11px;
+                position: absolute;
+                bottom: 5px;
+                background-color: rgba(0,0,0,0.8);
+                border-radius: 3px;
+                right: 10px;
+                padding: 10px;
+            }
+
+            #currentInfo {
+                width: 95%;
+                position: absolute;
+                left: 20px;
+                top: 63px;
+                background-color: rgba(0,0,0,0.2);
+                border-top: 1px solid rgba(255,255,255,0.4);
+                padding: 10px;
+            }
+
+            a {
+                color: #aaa;
+                text-decoration: none;
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+            .bull {
+                padding: 0 5px;
+                color: #555;
+            }
+
+            #title {
+                position: absolute;
+                top: 20px;
+                width: 1000px;
+                left: 20px;
+                display: block;
+                background-color: rgba(0,0,0,0.2);
+                border-radius: 3px;
+                font: 30px Georgia;
+                padding: 10px;
+            }
+
+            #title span {
+                font: 20px Georgia;
+            }
+
+            #meteorInfo {
+                width: 10%;
+                position: absolute;
+                left: 20px;
+                top: 120px;
+                background-color: rgba(0,0,0,0.2);
+                border-top: 1px solid rgba(255,255,255,0.4);
+                padding: 10px;
+            }
+
+            #textureInfo {
+                width: 10%;
+                position: absolute;
+                left: 85%;
+                top: 120px;
+                background-color: rgba(0,0,0,0.2);
+                border-top: 1px solid rgba(255,255,255,0.4);
+                padding: 10px;
+            }
+
+            #fellFoundInfo {
+                width: 10%;
+                position: absolute;
+                left: 85%;
+                top: 220px;
+                background-color: rgba(0,0,0,0.2);
+                border-top: 1px solid rgba(255,255,255,0.4);
+                padding: 10px;
+            }
+
+            #specificInfo {
+                width: 10%;
+                position: absolute;
+                left: 85%;
+                top: 350px;
+                background-color: rgba(0,0,0,0.2);
+                border-top: 1px solid rgba(255,255,255,0.4);
+                padding: 10px;
+            }
+
+            .meteorCat {
+                display: block;
+                font: 16px sans-serif;
+                line-height: 26px;
+                height: 25px;
+                color: rgba(0,0,0,1);
+                padding-left: 7px;
+                margin-bottom: 10px;
+                cursor: pointer;
+                border: 1px solid white;
+                opacity: 0.4;
+            }
+
+            .meteorCat:hover, .meteorCat.active {
+                font-size: 16px;
+                color: #000;
+                opacity: 1;
+            }
+
+            .prominent {
+                border: 1px solid white;
+            }
+
+            .year {
+                font: 16px Georgia;
+                line-height: 26px;
+                height: 30px;
+                text-align: center;
+                float: left;
+                width: 50px;
+                color: rgba(255, 255, 255, 0.4);
+                cursor: pointer;
+                -webkit-transition: all 0.1s ease-out;
+            }
+
+            .year:hover, .year.active {
+                font-size: 23px;
+                color: #fff;
+            }
+
+            #aboutContainer {
+                display : none;
+                width: 50%;
+                height: 600px;
+                position: absolute;
+                top: 120px;
+                left: 25%;
+                z-index: 10;
+                color: #fff;
+                background-color: rgba(0,0,0,0.9);
+                font-size: 16px;
+                border-top: 1px solid rgba(255,255,255,0.4);
+            }
+        </style>
+        <script type="text/javascript" src="third-party/jquery-1.10.0.min.js"></script>
+        <script type="text/javascript" src="third-party/json2.js"></script>
+        <script type="text/javascript" src="utils.js"></script>
+        <script type="text/javascript" src="parser.js"></script>
+        <script type="text/javascript">
+            <!--Google Analytics Code Goes Here-->
+        </script>
+    </head>
+    <body>
+        <div id="container"></div>
+        <div id="iffcontainer"></div>
+        <div id="aboutContainer">
+            <h1></h1>
+            <p align="justify">
+                <b></b>
+                is an attempt to facilitate users to visualize meteorite collisions across spatial and temporal attributes. The platform allows users to interactively explore the collisions on a <b>three dimensional (3D) visualization</b>
+                of the earth over many years. The time periods have been divided into decades - '1930' contains the meteorite collisions from '1930-1939'. These visualizations can be filtered down on the basis of the time of impact, the type of the meteorite and whether its fall was observed or found. These meteorites are visualized spatially using user-defined preferences, either on a Political Map or a Natural Map Texture. The total meteorites adhering to the filtered criteria are shown, and the top 20 prominent meteors are shown in a separate dialog, sorted in accordance to its mass. You can Revolve the 3D Globe visualization using the Mouse and also Zoom into a specific point using the Mouse Wheel. The meteorite collisions are displayed as Cylindrical Projections from the surface of the 3D Globe, the dimensions of which are directly proportional to the observed mass, and the color depends on the type of the meteorite. To account the wide range of mass of these meteorites the mapping scale decided was <b>(Height - (Square Root (Mass))*0.5)</b>
+                , as a result extremely small meteorites (0-100) may not be observed at first glance. 
+            </p>
+            <p align="justify">
+                The 3D Globe Visualization has been derived from the highly interactive 
+                <b>
+                    <a href="http://www.chromeexperiments.com/globe" target="_blank">WebGL Globe Visualization</a>
+                </b>
+                designed by Google Data Arts Team, as an open source platform for geographical data visualization. Due to its reliance on WebGL, it may be browser dependent or Graphics card dependent. In case of any errors, a customary message providing suitable alternatives is provided. The Platform is best viewed using a Google Chrome Browser on a 1920x1080 Display Resolution. 
+            </p>
+            <p align="justify">
+                The data has been obtained from <a href="http://www.lpi.usra.edu/meteor/metbull.php" target="_blank">The Meteorite Bulletin</a>
+                , constructed and maintained by the Nomenclature Committee of the Meteoritical Society, and is available for download at <a href="http://visualizing.org/datasets/meteorite-landings" target="_blank">Visualizing.org</a>
+                . The database contains information about each meteorite, including the classification, place and year of discovery, whether if was observed to fall and references to the <a href="http://www.encyclopedia-of-meteorites.com/" target="_blank">IMCA Encyclopedia of Meteorites</a>
+                , from which around 3500 images have been linked.
+            </p>
+            <p align="justify">
+             
+                <b>
+
+                </b>
+
+            </p>
+        </div>
+        <div id="info">
+           
+            Visualization derived from <a href="http://www.chromeexperiments.com/globe" target='_blank'>WebGL Globe</a>
+         
+           
+            <span class="bull">&bull;</span>
+            Data acquired from <a href="http://www.lpi.usra.edu/meteor/metbull.php" target='_blank'>The Meteorite Bulletin</a>
+        </div>
+        <div id="currentInfo">
+            <span id="year1500" class="year">
+                <1800 </span>
+    <span id="year1800" class="year">1800</span>
+                <span id="year1810" class="year">1810</span>
+                <span id="year1820" class="year">1820</span>
+                <span id="year1830" class="year">1830</span>
+                <span id="year1840" class="year">1840</span>
+                <span id="year1850" class="year">1850</span>
+                <span id="year1860" class="year">1860</span>
+                <span id="year1870" class="year">1870</span>
+                <span id="year1880" class="year">1880</span>
+                <span id="year1890" class="year">1890</span>
+                <span id="year1900" class="year">1900</span>
+                <span id="year1910" class="year">1910</span>
+                <span id="year1920" class="year">1920</span>
+                <span id="year1930" class="year">1930</span>
+                <span id="year1940" class="year">1940</span>
+                <span id="year1950" class="year">1950</span>
+                <span id="year1960" class="year">1960</span>
+                <span id="year1970" class="year">1970</span>
+                <span id="year1980" class="year">1980</span>
+                <span id="year1990" class="year">1990</span>
+                <span id="year2000" class="year">2000</span>
+                <span id="year2010" class="year">2010</span>
+        </div>
+        <div id="title">
+            <b></b>
+            <span></span>
+        </div>
+        <div id="meteorInfo">
+            <div id="sAll" class="meteorCat" style="background-color:#fff">All Categories</div>
+        </div>
+        <div id="textureInfo">
+           
+        </div>
+        <div id="fellFoundInfo"></div>
+        <div id="specificInfo" align='center'>
+            <h2>Total Meteors:</h2>
+            <h1 id='numberMeteor'></h1>
+           
+        </div>
+        <script type="text/javascript" src="third-party/Three/ThreeWebGL.js"></script>
+        <script type="text/javascript" src="third-party/Three/ThreeExtras.js"></script>
+        <script type="text/javascript" src="third-party/Three/RequestAnimationFrame.js"></script>
+        <script type="text/javascript" src="third-party/Three/Detector.js"></script>
+        <script type="text/javascript" src="third-party/Tween.js"></script>
+        <script type="text/javascript" src="globe.js"></script>
+        <script type="text/javascript" src="render.js"></script>
+    </body>
+</html>
