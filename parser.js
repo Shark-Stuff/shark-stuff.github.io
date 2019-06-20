@@ -12,7 +12,7 @@ $.ajax({
 });
 
 var queryParams = parseURI(window.location.search);
-var year = (queryParams["year"] == null || queryParams["year"] < 0 || queryParams["year"] > 22) ? 22 : parseInt(queryParams["year"]);
+var year = (queryParams["year"] == null || queryParams["year"] < 0 || queryParams["year"] > 3) ? 3 : parseInt(queryParams["year"]);
 var cat = (queryParams["cat"] == null || queryParams["cat"] < 0 || queryParams["cat"] == 'all') ? 'all' : parseInt(queryParams["cat"]);
 var found = (queryParams["found"] == null || queryParams["found"] < 0 || queryParams["found"] == 'all') ? 'all' : parseInt(queryParams["found"]);
 var id = (queryParams["id"] == null || queryParams["id"] < 0 || queryParams["id"] == 'all') ? 'all' : parseInt(queryParams["id"]);
