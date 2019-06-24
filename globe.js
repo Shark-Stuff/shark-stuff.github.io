@@ -1,8 +1,6 @@
 /**
- * dat.globe Javascript WebGL Globe Toolkit
- * http://dataarts.github.com/dat.globe
  *
- * Copyright 2011 Data Arts Team, Google Creative Lab
+ * Copyright 2019 Shark Design
  *
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
