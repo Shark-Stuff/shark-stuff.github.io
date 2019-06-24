@@ -35,7 +35,7 @@ var setTexture = function(texture) {
 
 $('#political').click(setTexture('world'));
 $('#natural').click(setTexture('worldvegi'));
-var texturediv = (storage.getItem('texture') == 'worldvegi') ? document.getElementById('political') : document.getElementById('natural');
+var texturediv = (storage.getItem('texture') == 'world') ? document.getElementById('political') : document.getElementById('natural');
 texturediv.setAttribute('class', 'btn btn-primary active');
 var yactive = document.getElementById('year' + years[year]);
 yactive.setAttribute('class', 'btn btn-light');
