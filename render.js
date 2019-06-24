@@ -35,7 +35,7 @@ var setTexture = function(texture) {
 
 $('#texture1').click(setTexture('world'));
 $('#texture2').click(setTexture('worldvegi'));
-var texturediv = (storage.getItem('texture') == 'world') ? document.getElementById('texture1') : document.getElementById('texture2');
+var texturediv = (storage.getItem('texture1') == 'world') ? document.getElementById('texture1') : document.getElementById('texture2');
 texturediv.setAttribute('class', 'btn btn-primary active');
 var yactive = document.getElementById('year' + years[year]);
 yactive.setAttribute('class', 'btn btn-light');
