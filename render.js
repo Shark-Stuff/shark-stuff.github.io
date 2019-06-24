@@ -33,9 +33,9 @@ var setTexture = function(texture) {
     }
 }
 
-$('#texture2').click(setTexture('worldvegi'));
-$('#texture1').click(setTexture('world'));
-var texturediv = (storage.getItem('texture') == 'world') ? document.getElementById('texture1') : document.getElementById('texture2');
+$('#natural').click(setTexture('worldvegi'));
+$('#political').click(setTexture('world'));
+var texturediv = (storage.getItem('texture') == 'world') ? document.getElementById('political') : document.getElementById('natural');
 texturediv.setAttribute('class', 'btn btn-primary active');
 var yactive = document.getElementById('year' + years[year]);
 yactive.setAttribute('class', 'btn btn-light');
