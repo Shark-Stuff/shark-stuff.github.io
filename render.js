@@ -33,8 +33,8 @@ var setTexture = function(texture) {
     }
 }
 
-$('#natural').click(setTexture('worldvegi'));
-$('#political').click(setTexture('world'));
+$('#natural').click(setTexture('world'));
+$('#political').click(setTexture('worldvegi'));
 var texturediv = (storage.getItem('texture') == 'world') ? document.getElementById('political') : document.getElementById('natural');
 texturediv.setAttribute('class', 'btn btn-primary active');
 var yactive = document.getElementById('year' + years[year]);
